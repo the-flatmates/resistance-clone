@@ -2,4 +2,8 @@
     <string name="app_name">The Resistance Clone</string>
     <string name="edit_message">Enter a message</string>
     <string name="button_send">Send</string>
+    <string name="host_game">Host Game</string>
+    <string name="join_game">Join Game</string>
+    <string name="num_players">Number of Players</string>
+    <string name="submit">Submit</string>
 </resources>
