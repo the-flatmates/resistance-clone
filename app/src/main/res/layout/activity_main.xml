@@ -7,14 +7,14 @@
     tools:context="com.flatmates.theresistanceclone.MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/img_resistance"
         android:layout_width="94dp"
         android:layout_height="254dp"
         android:layout_marginBottom="76dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/img_spy"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,7 +22,7 @@
         app:srcCompat="@drawable/resistance_fist" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/img_spy"
         android:layout_width="118dp"
         android:layout_height="255dp"
         android:layout_marginBottom="76dp"
@@ -31,12 +31,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintStart_toEndOf="@+id/img_resistance"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/spy" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btn_host_game"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -44,11 +44,11 @@
         android:onClick="hostGame"
         android:text="@string/host_game"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintEnd_toStartOf="@+id/btn_join_game"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/btn_join_game"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -58,6 +58,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button2" />
+        app:layout_constraintStart_toEndOf="@+id/btn_host_game" />
 
 </android.support.constraint.ConstraintLayout>

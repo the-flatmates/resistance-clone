@@ -4,6 +4,7 @@
     <string name="button_send">Send</string>
     <string name="host_game">Host Game</string>
     <string name="join_game">Join Game</string>
+    <string name="name">Name</string>
     <string name="num_players">Number of Players</string>
     <string name="submit">Submit</string>
     <string name="settings_targeting">Targeting</string>
