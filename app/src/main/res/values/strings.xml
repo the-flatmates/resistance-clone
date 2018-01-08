@@ -6,4 +6,9 @@
     <string name="join_game">Join Game</string>
     <string name="num_players">Number of Players</string>
     <string name="submit">Submit</string>
+    <string name="settings_targeting">Targeting</string>
+    <string name="settings_idiot_proof">Idiot Proof</string>
+    <string name="settings_blind_spies">Blind Spies</string>
+    <string name="settings_color_blind">Color Blind</string>
+    <string name="settings_spy_reveal_phase">Spy Reveal Phase</string>
 </resources>
