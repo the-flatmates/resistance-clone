@@ -76,9 +76,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:checked="true"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_settings_spy_reveal"
         app:layout_constraintEnd_toStartOf="@+id/tv_settings_spy_reveal"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:checked="true" />
 
     <Switch
         android:id="@+id/sw_settings_color_blind"
