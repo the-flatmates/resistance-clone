@@ -164,7 +164,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sw_settings_spy_reveal"
-        app:layout_constraintTop_toBottomOf="@+id/tv_settings_blind_spies" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_settings_color_blind" />
 
     <TextView
         android:id="@+id/tv_settings_color_blind"
@@ -177,7 +177,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sw_settings_color_blind"
-        app:layout_constraintTop_toBottomOf="@+id/tv_settings_spy_reveal" />
+        app:layout_constraintTop_toBottomOf="@+id/tv_settings_blind_spies" />
 
     <SeekBar
         android:id="@+id/sb_num_players"
