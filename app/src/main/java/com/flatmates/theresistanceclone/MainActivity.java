@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
      * Called when the user taps the Send button
      */
 //    public void sendMessage(View view) {
-//        Intent intent = new Intent(this, DisplayMessageActivity.class);
+//        Intent intent = new Intent(this, HostWait.class);
 //        EditText editText = findViewById(R.id.editText);
 //        String message = editText.getText().toString();
 //        intent.putExtra(EXTRA_MESSAGE, message);
