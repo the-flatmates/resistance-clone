@@ -8,6 +8,7 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class HostGame extends AppCompatActivity {
+    public static final String EXTRA_MESSAGE = "com.flatmates.theresistanceclone.MESSAGE";
     private TextView tv_num_players;
 
     @Override
@@ -42,6 +43,7 @@ public class HostGame extends AppCompatActivity {
      */
     public void submit(View view) {
         Intent intent = new Intent(this, HostWait.class);
+        intent.putExtra(EXTRA_MESSAGE, "RMCODE");
         startActivity(intent);
     }
 }
