@@ -6,7 +6,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 
 public class HostGame extends AppCompatActivity {
-    private SeekBar sb_num_players;
     private TextView tv_num_players;
 
     @Override
@@ -14,7 +13,7 @@ public class HostGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host_game);
 
-        sb_num_players = findViewById(R.id.sb_num_players);
+        SeekBar sb_num_players = findViewById(R.id.sb_num_players);
         tv_num_players = findViewById(R.id.tv_num_players);
 
         sb_num_players.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
@@ -23,6 +22,7 @@ public class HostGame extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int value, boolean b) {
                 num_players = value + 5;
+                tv_num_players.setText(String.valueOf(num_players));
             }
 
             @Override
@@ -32,7 +32,7 @@ public class HostGame extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                tv_num_players.setText(String.valueOf(num_players));
+
             }
         });
     }

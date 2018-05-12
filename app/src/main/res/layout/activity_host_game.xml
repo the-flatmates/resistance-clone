@@ -18,16 +18,16 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/te_player_name"
+        android:id="@+id/te_host_player_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
+        android:hint="@string/name_hint"
         android:inputType="textPersonName"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_host_game_title"
-        tools:text="@string/name" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_host_player_name_title" />
 
     <Switch
         android:id="@+id/sw_settings_targeting"
@@ -49,7 +49,7 @@
         android:text="@string/num_players"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/te_player_name" />
+        app:layout_constraintTop_toBottomOf="@+id/te_host_player_name" />
 
     <Switch
         android:id="@+id/sw_settings_idiot_proof"
@@ -76,9 +76,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:checked="true"
         app:layout_constraintBaseline_toBaselineOf="@+id/tv_settings_spy_reveal"
         app:layout_constraintEnd_toStartOf="@+id/tv_settings_spy_reveal"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:checked="true" />
 
     <Switch
         android:id="@+id/sw_settings_color_blind"
@@ -91,6 +93,7 @@
 
     <Button
         android:id="@+id/btn_host_game_submit"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -202,5 +205,16 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/sb_num_players"
         app:layout_constraintTop_toTopOf="@+id/sb_num_players" />
+
+    <TextView
+        android:id="@+id/tv_host_player_name_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/name"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_host_game_title" />
 
 </android.support.constraint.ConstraintLayout>
