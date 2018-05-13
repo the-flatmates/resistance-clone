@@ -4,7 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.flatmates.theresistanceclone.HostWait">
+    tools:context="com.flatmates.theresistanceclone.Wait">
+
+    <Button
+        android:id="@+id/btn_ready"
+        style="@android:style/Widget.Holo.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:onClick="ready"
+        android:text="@string/ready"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/tv_room_code_title2"
@@ -27,7 +40,7 @@
         android:layout_marginLeft="24dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="24dp"
-        android:text="@string/host_wait"
+        android:text="@string/wait"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/pb_host_wait"

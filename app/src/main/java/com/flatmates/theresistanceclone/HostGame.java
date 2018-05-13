@@ -13,12 +13,15 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class HostGame extends AppCompatActivity {
+    public static final String HOSTNAME = "com.flatmates.theresistanceclone.HOSTNAME";
+    public static final String PORT = "com.flatmates.theresistanceclone.PORT";
     public static final String ROOM_CODE = "com.flatmates.theresistanceclone.ROOM_CODE";
     private TextView tv_num_players;
     private EditText te_host_player_name;
     private Switch[] switches = new Switch[5];
     private int num_players = 5;
-    private Client myClient;
+    private String hostname;
+    private int port;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,10 +30,8 @@ public class HostGame extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String hostname = intent.getStringExtra(MainActivity.HOSTNAME);
-        int port = intent.getIntExtra(MainActivity.PORT, 0);
-
-        myClient = new Client(hostname, port);
+        hostname = intent.getStringExtra(MainActivity.HOSTNAME);
+        port = intent.getIntExtra(MainActivity.PORT, 0);
 
         SeekBar sb_num_players = findViewById(R.id.sb_num_players);
         tv_num_players = findViewById(R.id.tv_num_players);
@@ -63,7 +64,8 @@ public class HostGame extends AppCompatActivity {
      * Called when the user taps the submit button
      */
     public void submit(View view) throws IOException {
-        Intent intent = new Intent(this, HostWait.class);
+        Client myClient = new Client(hostname, port);
+        Intent intent = new Intent(this, Wait.class);
 
         String settings = "";
 
@@ -86,6 +88,8 @@ public class HostGame extends AppCompatActivity {
             System.out.println(e);
         }
         intent.putExtra(ROOM_CODE, response);
+        intent.putExtra(HOSTNAME, hostname);
+        intent.putExtra(PORT, port);
         startActivity(intent);
     }
 }

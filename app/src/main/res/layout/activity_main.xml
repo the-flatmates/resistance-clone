@@ -37,6 +37,7 @@
 
     <Button
         android:id="@+id/btn_host_game"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -49,6 +50,7 @@
 
     <Button
         android:id="@+id/btn_join_game"
+        style="@android:style/Widget.Holo.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"

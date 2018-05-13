@@ -33,7 +33,7 @@ public class Client extends AsyncTask<String, String, String> {
                 out.flush();
             }
             bytesRead = inputStream.read(buffer, 0, 6);
-            byteArrayOutputStream.write(buffer, 0, 6);
+            byteArrayOutputStream.write(buffer, 0, bytesRead);
             response += byteArrayOutputStream.toString("UTF-8");
         } catch (Exception e) {
             e.printStackTrace();

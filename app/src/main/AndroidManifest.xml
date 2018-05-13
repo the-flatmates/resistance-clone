@@ -20,15 +20,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".HostWait"
-            android:parentActivityName=".HostGame">
-
-            <!-- The meta-data tag is required if you support API level 15 and lower -->
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity
             android:name=".HostGame"
             android:parentActivityName=".MainActivity">
 
@@ -47,7 +38,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity
-            android:name=".PlayerWait"
+            android:name=".Wait"
             android:parentActivityName=".JoinGame">
 
             <!-- The meta-data tag is required if you support API level 15 and lower -->
