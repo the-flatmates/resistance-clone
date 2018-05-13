@@ -42,7 +42,7 @@
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="@string/room_code_hint"
-        android:inputType="textPersonName"
+        android:inputType="textCapCharacters|textPersonName"
         android:maxLength="6"
         android:textAllCaps="true"
         app:layout_constraintEnd_toEndOf="parent"

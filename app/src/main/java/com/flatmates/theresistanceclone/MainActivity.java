@@ -7,6 +7,9 @@ import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
+    public static final String HOSTNAME = "com.flatmates.theresistanceclone.HOSTNAME";
+    public static final String PORT = "com.flatmates.theresistanceclone.PORT";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void hostGame(View view) {
         Intent intent = new Intent(this, HostGame.class);
+        intent.putExtra(HOSTNAME, "35.196.166.4");
+        intent.putExtra(PORT, 9998);
         startActivity(intent);
     }
 
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
      */
     public void joinGame(View view) {
         Intent intent = new Intent(this, JoinGame.class);
+        intent.putExtra(HOSTNAME, "35.196.166.4");
+        intent.putExtra(PORT, 9998);
         startActivity(intent);
     }
 }

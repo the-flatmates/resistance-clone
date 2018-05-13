@@ -13,19 +13,25 @@ import java.io.IOException;
 import java.util.Locale;
 
 public class HostGame extends AppCompatActivity {
-    public static final String ROOM_CODE = "com.flatmates.theresistanceclone.MESSAGE";
-    private static final int SERVERPORT = 9998;
-    private static final String SERVER_IP = "35.196.166.4";
+    public static final String ROOM_CODE = "com.flatmates.theresistanceclone.ROOM_CODE";
     private TextView tv_num_players;
     private EditText te_host_player_name;
     private Switch[] switches = new Switch[5];
     private int num_players = 5;
-    Client myClient = new Client(SERVER_IP, SERVERPORT);
+    private Client myClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host_game);
+
+        // Get the Intent that started this activity and extract the string
+        Intent intent = getIntent();
+        String hostname = intent.getStringExtra(MainActivity.HOSTNAME);
+        int port = intent.getIntExtra(MainActivity.PORT, 0);
+
+        myClient = new Client(hostname, port);
+
         SeekBar sb_num_players = findViewById(R.id.sb_num_players);
         tv_num_players = findViewById(R.id.tv_num_players);
         te_host_player_name = findViewById(R.id.te_host_player_name);
