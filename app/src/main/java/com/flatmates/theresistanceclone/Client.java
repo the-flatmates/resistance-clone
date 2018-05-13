@@ -13,7 +13,7 @@ public class Client extends AsyncTask<String, String, String> {
     private String response = "";
     private String hostname;
     private int port;
-    private Socket socket;
+    static public Socket socket;
 
     Client(String addr, int port) {
         this.hostname = addr;
@@ -23,18 +23,17 @@ public class Client extends AsyncTask<String, String, String> {
     @Override
     protected String doInBackground(String... args) {
         try {
-            Socket socket = new Socket(hostname, port);
+            socket = new Socket(hostname, port);
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
             byte[] buffer = new byte[1024];
-            int bytesRead;
+            int bytesRead = 0;
             PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
             for (int i = 0; args.length > i; i++) {
                 out.print(args[i]);
                 out.flush();
             }
             InputStream inputStream = socket.getInputStream();
-
-            inputStream.read(buffer, 0, 6);
+            bytesRead = inputStream.read(buffer, 0, 6);
             byteArrayOutputStream.write(buffer, 0, 6);
             response += byteArrayOutputStream.toString("UTF-8");
         } catch (UnknownHostException e) {
