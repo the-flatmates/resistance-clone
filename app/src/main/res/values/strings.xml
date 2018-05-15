@@ -15,4 +15,6 @@
     <string name="settings_spy_reveal_phase">Spy Reveal Phase</string>
     <string name="room_code">Room Code</string>
     <string name="room_code_hint">Enter 6-Letter Room Code</string>
+    <string name="resistance_logo">Resistance Logo</string>
+    <string name="spy_logo">Spy Logo</string>
 </resources>

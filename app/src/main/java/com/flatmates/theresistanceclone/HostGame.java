@@ -9,30 +9,19 @@ import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.io.IOException;
 import java.util.Locale;
 
 public class HostGame extends AppCompatActivity {
-    public static final String HOSTNAME = "com.flatmates.theresistanceclone.HOSTNAME";
-    public static final String PORT = "com.flatmates.theresistanceclone.PORT";
-    public static final String ROOM_CODE = "com.flatmates.theresistanceclone.ROOM_CODE";
+    private static final String ROOM_CODE = "com.flatmates.theresistanceclone.ROOM_CODE";
     private TextView tv_num_players;
     private EditText te_host_player_name;
-    private Switch[] switches = new Switch[5];
+    private final Switch[] switches = new Switch[5];
     private int num_players = 5;
-    private String hostname;
-    private int port;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_host_game);
-
-        // Get the Intent that started this activity and extract the string
-        Intent intent = getIntent();
-        hostname = intent.getStringExtra(MainActivity.HOSTNAME);
-        port = intent.getIntExtra(MainActivity.PORT, 0);
-
         SeekBar sb_num_players = findViewById(R.id.sb_num_players);
         tv_num_players = findViewById(R.id.tv_num_players);
         te_host_player_name = findViewById(R.id.te_host_player_name);
@@ -63,33 +52,34 @@ public class HostGame extends AppCompatActivity {
     /**
      * Called when the user taps the submit button
      */
-    public void submit(View view) throws IOException {
-        Client myClient = new Client(hostname, port);
+    public void submit(View view) {
         Intent intent = new Intent(this, Wait.class);
+        intent.putExtra(ROOM_CODE, "");
+        sendSettings();
+        startActivity(intent);
+    }
 
-        String settings = "";
-
-        for (int i = 0; i < switches.length; i++) {
-            if (switches[i].isChecked()) {
-                settings += "t";
+    private String getSettings() {
+        StringBuilder settings = new StringBuilder();
+        for (Switch sw : switches) {
+            if (sw.isChecked()) {
+                settings.append("t");
             } else {
-                settings += "f";
+                settings.append("f");
             }
         }
+        return settings.toString();
+    }
 
-        String[] params = {"h",
-                settings,
-                String.format(Locale.US, "%02d", num_players),
+    private void sendSettings() {
+        String settings = getSettings();
+        String[] params = {"h", settings, String.format(Locale.US, "%02d", num_players),
                 te_host_player_name.getText().toString()};
-        String response = "";
+        ClientSend c = new ClientSend();
         try {
-            response = myClient.execute(params).get();
+            c.execute(params);
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
-        intent.putExtra(ROOM_CODE, response);
-        intent.putExtra(HOSTNAME, hostname);
-        intent.putExtra(PORT, port);
-        startActivity(intent);
     }
 }

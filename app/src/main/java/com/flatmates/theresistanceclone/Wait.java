@@ -9,9 +9,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class Wait extends AppCompatActivity {
-    private String hostname;
-    private int port;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,26 +16,35 @@ public class Wait extends AppCompatActivity {
 
         // Get the Intent that started this activity and extract the string
         Intent intent = getIntent();
-        String room_code = intent.getStringExtra(HostGame.ROOM_CODE);
-        hostname = intent.getStringExtra(MainActivity.HOSTNAME);
-        port = intent.getIntExtra(MainActivity.PORT, 0);
+        String room_code = intent.getStringExtra("com.flatmates.theresistanceclone.ROOM_CODE");
 
         // Capture the layout's TextView and set the string as its text
-        TextView textView = findViewById(R.id.tv_room_code);
-        textView.setText(room_code);
+        TextView tv_room_code = findViewById(R.id.tv_room_code);
+
+        if (!room_code.isEmpty()) {
+            tv_room_code.setText(room_code);
+        } else {
+            ClientReceive r = new ClientReceive();
+            Integer[] bytes = {6};
+            try {
+                String message = r.execute(bytes).get();
+                tv_room_code.setText(message);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
      * Called when the user taps the ready button
      */
     public void ready(View view) {
-        Client myClient = new Client(hostname, port);
         String[] params = {"1"};
-        String response = "";
+        ClientSend c = new ClientSend();
         try {
-            response = myClient.execute(params).get();
+            c.execute(params);
         } catch (Exception e) {
-            System.out.println(e);
+            e.printStackTrace();
         }
         Context context = getApplicationContext();
         String message = "Ready to start!";
