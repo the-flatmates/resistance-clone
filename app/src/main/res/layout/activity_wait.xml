@@ -68,7 +68,7 @@
         app:layout_constraintVertical_bias="0.187" />
 
     <Button
-        android:id="@+id/btn_ready"
+        android:id="@+id/btn_ready_wait"
         style="@android:style/Widget.Holo.Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
