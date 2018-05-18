@@ -13,14 +13,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        socketHandler = new SocketHandler("35.196.166.4", 9998);
-        socketHandler.execute();
     }
 
     /**
      * Called when the user taps the host game button
      */
     public void hostGame(View view) {
+        socketHandler = new SocketHandler("35.196.166.4", 9998);
+        socketHandler.execute();
         Intent intent = new Intent(this, HostGame.class);
         startActivity(intent);
     }
@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
      * Called when the user taps the join game button
      */
     public void joinGame(View view) {
+        socketHandler = new SocketHandler("35.196.166.4", 9998);
+        socketHandler.execute();
         Intent intent = new Intent(this, JoinGame.class);
         startActivity(intent);
     }
