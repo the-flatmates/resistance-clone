@@ -12,7 +12,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 public class JoinGame extends AppCompatActivity {
-    private static final String ROOM_CODE = "com.flatmates.theresistanceclone.ROOM_CODE";
     private EditText te_room_code;
     private EditText te_player_name;
     private Button btn_join_game_submit;
@@ -69,22 +68,27 @@ public class JoinGame extends AppCompatActivity {
      */
     public void submit(View view) {
         sendSettings();
-        String response = receive();
-        if (response.equals("0")) {
+        receiveResponse();
+        if (Game.getResponse() == null) {
+            Context context = getApplicationContext();
+            String message = "Waiting for response from server";
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        } else if (Game.getResponse().equals("0")) {
             Context context = getApplicationContext();
             String message = "Room does not exist!";
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
         } else {
             Intent intent = new Intent(this, Wait.class);
-            intent.putExtra(ROOM_CODE, te_room_code.getText().toString().toUpperCase());
+            Game.setRoomCode(te_room_code.getText().toString().toUpperCase());
             startActivity(intent);
         }
     }
 
     private void sendSettings() {
         ClientSend c = new ClientSend();
-        String[] params = {"c", te_room_code.getText().toString().toUpperCase(),
-                te_player_name.getText().toString()};
+        String roomCodeMessage = Game.createMessage("c", te_room_code.getText().toString().toUpperCase());
+        String playerName = Game.createMessage("n", te_player_name.getText().toString());
+        String[] params = {"c", roomCodeMessage, playerName};
         try {
             c.execute(params);
         } catch (Exception e) {
@@ -92,15 +96,12 @@ public class JoinGame extends AppCompatActivity {
         }
     }
 
-    private String receive() {
+    private void receiveResponse() {
         ClientReceive r = new ClientReceive();
-        String message = "";
-        Integer[] bytes = {1};
         try {
-            message = r.execute(bytes).get();
+            r.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return message;
     }
 }

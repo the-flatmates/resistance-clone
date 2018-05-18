@@ -12,7 +12,6 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class HostGame extends AppCompatActivity {
-    private static final String ROOM_CODE = "com.flatmates.theresistanceclone.ROOM_CODE";
     private TextView tv_num_players;
     private EditText te_host_player_name;
     private final Switch[] switches = new Switch[5];
@@ -54,8 +53,8 @@ public class HostGame extends AppCompatActivity {
      */
     public void submit(View view) {
         Intent intent = new Intent(this, Wait.class);
-        intent.putExtra(ROOM_CODE, "");
         sendSettings();
+        receiveResponse();
         startActivity(intent);
     }
 
@@ -73,13 +72,24 @@ public class HostGame extends AppCompatActivity {
 
     private void sendSettings() {
         String settings = getSettings();
-        String[] params = {"h", settings, String.format(Locale.US, "%02d", num_players),
-                te_host_player_name.getText().toString()};
+        String settingsMessage = Game.createMessage("h", settings + String.format(Locale.US, "%02d", num_players));
+        String playerName = Game.createMessage("n", te_host_player_name.getText().toString());
+        String[] params = {"h", settingsMessage, playerName};
         ClientSend c = new ClientSend();
         try {
             c.execute(params);
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private void receiveResponse() {
+        ClientReceive r = new ClientReceive();
+        try {
+            r.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        Game.setRoomCode(Game.getResponse());
     }
 }

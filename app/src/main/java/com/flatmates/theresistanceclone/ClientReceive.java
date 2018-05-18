@@ -5,29 +5,29 @@ import android.os.AsyncTask;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.net.Socket;
+import java.util.Arrays;
 
-class ClientReceive extends AsyncTask<Integer, String, String> {
+class ClientReceive extends AsyncTask<Void, String, Void> {
     private String response = "";
 
     @Override
-    protected String doInBackground(Integer... args) {
+    protected Void doInBackground(Void... args) {
         try {
             Socket socket = SocketHandler.getSocket();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
             InputStream inputStream = socket.getInputStream();
             byte[] buffer = new byte[1024];
             int bytesRead;
-            bytesRead = inputStream.read(buffer, 0, args[0]);
+            int messageLength;
+            bytesRead = inputStream.read(buffer, 0, 3);
+            messageLength = Integer.parseInt(new String(Arrays.copyOfRange(buffer, 0, 2)).trim());
+            bytesRead = inputStream.read(buffer, 0, messageLength);
             byteArrayOutputStream.write(buffer, 0, bytesRead);
             response += byteArrayOutputStream.toString("UTF-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return response;
-    }
-
-    @Override
-    protected void onPostExecute(String result) {
-        super.onPostExecute(result);
+        Game.setResponse(response);
+        return null;
     }
 }
