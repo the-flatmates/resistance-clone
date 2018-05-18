@@ -1,15 +1,26 @@
 package com.flatmates.theresistanceclone;
 
+import java.util.Locale;
+
 public class Game {
+    private static String response;
     private static String room_code;
     private static String player_name;
-    private static int num_players;
     private static String[] player_names;
+    private static int num_players;
     private static boolean targeting;
     private static boolean idiot_proof;
     private static boolean blind_spies;
     private static boolean spy_reveal;
     private static boolean color_blind;
+
+    public static synchronized String getResponse() {
+        return response;
+    }
+
+    public static synchronized void setResponse(String response) {
+        Game.response = response;
+    }
 
     public static synchronized String getRoomCode() {
         return room_code;
@@ -81,5 +92,9 @@ public class Game {
 
     public static synchronized void setColorBlind(boolean color_blindg) {
         Game.color_blind = color_blind;
+    }
+
+    public static String createMessage(String type, String message) {
+        return (type + String.format(Locale.US, "%03d", message.length()) + message);
     }
 }
