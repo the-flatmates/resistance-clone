@@ -1,45 +1,91 @@
 package com.flatmates.theresistanceclone;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import org.json.JSONObject;
 
 public class Wait extends AppCompatActivity {
+    private Button btn_ready_wait;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_wait);
 
-        // Capture the layout's TextView and set the string as its text
         TextView tv_room_code = findViewById(R.id.tv_room_code);
-
         tv_room_code.setText(Game.getRoomCode());
+        btn_ready_wait = findViewById(R.id.btn_ready_wait);
     }
 
     /**
      * Called when the user taps the ready button
      */
     public void ready(View view) {
-        String[] params = {"r"};
+        sendReady();
+        String settings = receiveSettings();
+
+        System.out.print(settings);
+        setGameSettings(settings);
+
+        if (Game.getRole().equals("host")) {
+            Intent intent = new Intent(Wait.this, SpyReveal.class);
+            startActivity(intent);
+        } else {
+            btn_ready_wait.setEnabled(false);
+            String start = receiveStart();
+            if (start.equals("s")) {
+                System.out.println("Received start signal");
+                // TODO: Determine if leader or not, then start mission screen
+//                Intent intent = new Intent(Wait.this, Mission.class);
+//                startActivity(intent);
+            }
+        }
+    }
+
+    private void sendReady() {
         ClientSend c = new ClientSend();
+        String[] params = {"r000"};
         try {
             c.execute(params);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Context context = getApplicationContext();
-        String message = "Ready to start!";
-        Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+    }
 
-        Intent intent = new Intent(Wait.this, SpyReveal.class);
+    private String receiveSettings() {
+        ClientReceive r = new ClientReceive();
+        String response = "";
         try {
-            startActivity(intent);
+            response = r.execute().get();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return response;
+    }
+
+    private void setGameSettings(String settings) {
+        try {
+            JSONObject settingsJSON = new JSONObject(settings);
+            System.out.print(settingsJSON.toString());
+            // TODO: Set game settings
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String receiveStart() {
+        ClientReceive r = new ClientReceive();
+        String response = "";
+        try {
+            response = r.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 }
