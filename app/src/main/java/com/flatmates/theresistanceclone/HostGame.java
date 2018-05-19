@@ -85,11 +85,12 @@ public class HostGame extends AppCompatActivity {
 
     private void receiveResponse() {
         ClientReceive r = new ClientReceive();
+        String room_code = "";
         try {
-            r.execute();
+            room_code = r.execute().get();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Game.setRoomCode(Game.getResponse());
+        Game.setRoomCode(room_code);
     }
 }

@@ -7,11 +7,11 @@ import java.io.InputStream;
 import java.net.Socket;
 import java.util.Arrays;
 
-class ClientReceive extends AsyncTask<Void, String, Void> {
+class ClientReceive extends AsyncTask<Void, String, String> {
     private String response = "";
 
     @Override
-    protected Void doInBackground(Void... args) {
+    protected String doInBackground(Void... args) {
         try {
             Socket socket = SocketHandler.getSocket();
             ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(1024);
@@ -27,7 +27,6 @@ class ClientReceive extends AsyncTask<Void, String, Void> {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Game.setResponse(response);
-        return null;
+        return response;
     }
 }

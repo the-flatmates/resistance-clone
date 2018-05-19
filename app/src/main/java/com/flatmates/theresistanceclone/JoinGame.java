@@ -68,12 +68,8 @@ public class JoinGame extends AppCompatActivity {
      */
     public void submit(View view) {
         sendSettings();
-        receiveResponse();
-        if (Game.getResponse() == null) {
-            Context context = getApplicationContext();
-            String message = "Waiting for response from server";
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
-        } else if (Game.getResponse().equals("0")) {
+        String response = receiveResponse();
+        if (response.equals("0")) {
             Context context = getApplicationContext();
             String message = "Room does not exist!";
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
@@ -86,9 +82,9 @@ public class JoinGame extends AppCompatActivity {
 
     private void sendSettings() {
         ClientSend c = new ClientSend();
-        String roomCodeMessage = Game.createMessage("c", te_room_code.getText().toString().toUpperCase());
+        String roomCodeMessage = Game.createMessage("p", te_room_code.getText().toString().toUpperCase());
         String playerName = Game.createMessage("n", te_player_name.getText().toString());
-        String[] params = {"c", roomCodeMessage, playerName};
+        String[] params = {"p", roomCodeMessage, playerName};
         try {
             c.execute(params);
         } catch (Exception e) {
@@ -96,12 +92,14 @@ public class JoinGame extends AppCompatActivity {
         }
     }
 
-    private void receiveResponse() {
+    private String receiveResponse() {
         ClientReceive r = new ClientReceive();
+        String response = "";
         try {
-            r.execute();
+            response = r.execute().get();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return response;
     }
 }
