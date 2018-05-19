@@ -54,7 +54,7 @@ public class HostGame extends AppCompatActivity {
     public void submit(View view) {
         Intent intent = new Intent(this, Wait.class);
         sendSettings();
-        receiveResponse();
+        receiveRoomCode();
         startActivity(intent);
     }
 
@@ -83,7 +83,7 @@ public class HostGame extends AppCompatActivity {
         }
     }
 
-    private void receiveResponse() {
+    private void receiveRoomCode() {
         ClientReceive r = new ClientReceive();
         String room_code = "";
         try {
