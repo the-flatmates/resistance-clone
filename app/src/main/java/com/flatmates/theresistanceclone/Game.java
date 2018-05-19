@@ -3,7 +3,7 @@ package com.flatmates.theresistanceclone;
 import java.util.Locale;
 
 public class Game {
-    private static String response;
+    private static String role;
     private static String room_code;
     private static String player_name;
     private static String[] player_names;
@@ -14,12 +14,12 @@ public class Game {
     private static boolean spy_reveal;
     private static boolean color_blind;
 
-    public static synchronized String getResponse() {
-        return response;
+    public static synchronized String getRole() {
+        return role;
     }
 
-    public static synchronized void setResponse(String response) {
-        Game.response = response;
+    public static synchronized void setRole(String role) {
+        Game.role = role;
     }
 
     public static synchronized String getRoomCode() {
