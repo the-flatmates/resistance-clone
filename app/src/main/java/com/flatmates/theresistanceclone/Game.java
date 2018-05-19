@@ -1,19 +1,21 @@
 package com.flatmates.theresistanceclone;
 
+import java.util.List;
 import java.util.Locale;
 
 class Game {
     private static String role;
-    private static String room_code;
-    private static String player_name;
+    private static String roomCode;
+    private static String playerName;
     private static String allegiance;
-    private static String[] leader_order;
-    private static int num_players;
+    private static String[] leaderOrder;
+    private static List<int[]> roundInfo;
+    private static int numPlayers;
     private static boolean targeting;
-    private static boolean idiot_proof;
-    private static boolean blind_spies;
-    private static boolean spy_reveal;
-    private static boolean color_blind;
+    private static boolean idiotProof;
+    private static boolean blindSpies;
+    private static boolean spyReveal;
+    private static boolean colorBlind;
 
     public static synchronized String getRole() {
         return role;
@@ -24,11 +26,11 @@ class Game {
     }
 
     public static synchronized String getRoomCode() {
-        return room_code;
+        return roomCode;
     }
 
     public static synchronized void setRoomCode(String room_code) {
-        Game.room_code = room_code;
+        Game.roomCode = room_code;
     }
 
     public static synchronized String getAllegiance() {
@@ -40,27 +42,35 @@ class Game {
     }
 
     public static synchronized String getPlayerName() {
-        return player_name;
+        return playerName;
     }
 
     public static synchronized void setPlayerName(String player_name) {
-        Game.player_name = player_name;
-    }
-
-    public static synchronized int getNumPlayers() {
-        return num_players;
-    }
-
-    public static synchronized void setNumPlayers(int num_players) {
-        Game.num_players = num_players;
+        Game.playerName = player_name;
     }
 
     public static synchronized String[] getLeaderOrder() {
-        return leader_order;
+        return leaderOrder;
     }
 
     public static synchronized void setLeaderOrder(String[] leader_order) {
-        Game.leader_order = leader_order;
+        Game.leaderOrder = leader_order;
+    }
+
+    public static synchronized List<int[]> getRoundInfo() {
+        return roundInfo;
+    }
+
+    public static synchronized void setRoundInfo(List<int[]> round_info) {
+        Game.roundInfo = round_info;
+    }
+
+    public static synchronized int getNumPlayers() {
+        return numPlayers;
+    }
+
+    public static synchronized void setNumPlayers(int num_players) {
+        Game.numPlayers = num_players;
     }
 
     public static synchronized boolean getTargeting() {
@@ -72,35 +82,35 @@ class Game {
     }
 
     public static synchronized boolean getIdiotProof() {
-        return idiot_proof;
+        return idiotProof;
     }
 
     public static synchronized void setIdiotProof(boolean idiot_proof) {
-        Game.idiot_proof = idiot_proof;
+        Game.idiotProof = idiot_proof;
     }
 
     public static synchronized boolean getBlindSpied() {
-        return blind_spies;
+        return blindSpies;
     }
 
     public static synchronized void setBlindSpies(boolean blind_spies) {
-        Game.blind_spies = blind_spies;
+        Game.blindSpies = blind_spies;
     }
 
     public static synchronized boolean getSpyReveal() {
-        return spy_reveal;
+        return spyReveal;
     }
 
     public static synchronized void setSpyReveal(boolean spy_reveal) {
-        Game.spy_reveal = spy_reveal;
+        Game.spyReveal = spy_reveal;
     }
 
     public static synchronized boolean getColorBlind() {
-        return color_blind;
+        return colorBlind;
     }
 
     public static synchronized void setColorBlind(boolean color_blind) {
-        Game.color_blind = color_blind;
+        Game.colorBlind = color_blind;
     }
 
     public static String createMessage(String type, String message) {

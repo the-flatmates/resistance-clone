@@ -8,7 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Wait extends AppCompatActivity {
     private Button btn_ready_wait;
@@ -67,13 +71,30 @@ public class Wait extends AppCompatActivity {
         return response;
     }
 
+    public int[] JSONArrayToIntArray(JSONArray jsonArray) {
+        int[] intArray = new int[jsonArray.length()];
+        for (int i = 0; i < intArray.length; i++) {
+            intArray[i] = jsonArray.optInt(i);
+        }
+        return intArray;
+    }
+
+    public List<int[]> JSONArrayToList(JSONArray jsonArray) {
+        List<int[]> list = new ArrayList<int[]>();
+        for (int i = 0; i < jsonArray.length(); i++) {
+            int[] temp = JSONArrayToIntArray(jsonArray.optJSONArray(i));
+            list.add(temp);
+        }
+        return list;
+    }
+
     private void setGameSettings(String settings) {
         try {
-            Log.d("Wait", settings);
             JSONObject settingsJSON = new JSONObject(settings);
             Game.setAllegiance(settingsJSON.getString("allegiance"));
             Game.setNumPlayers(settingsJSON.getInt("numPlayers"));
             Game.setLeaderOrder(settingsJSON.getJSONArray("leaderOrder").toString().replace("},{", " ,").split(" "));
+            Game.setRoundInfo(JSONArrayToList(settingsJSON.getJSONArray("roundInfo")));
             Game.setTargeting(settingsJSON.getJSONObject("settings").getBoolean("targeting"));
             Game.setIdiotProof(settingsJSON.getJSONObject("settings").getBoolean("idiotProof"));
             Game.setBlindSpies(settingsJSON.getJSONObject("settings").getBoolean("blindSpies"));
