@@ -3,6 +3,7 @@
     <string name="host_game">Host Game</string>
     <string name="wait">Waiting for other players</string>
     <string name="ready">Ready</string>
+    <string name="start">Start Game</string>
     <string name="join_game">Join Game</string>
     <string name="name">Player Name</string>
     <string name="name_hint">Enter Player Name</string>
