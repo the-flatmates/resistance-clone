@@ -21,4 +21,5 @@
     <string name="reveal_prompt">Everyone close your eyes.\n\nSpies open your eyes. Look around and
         make sure that you know all the other Spies.\n\nSpies close your eyes. Everyone\'s eyes
         should be closed.\n\nEveryone open your eyes.</string>
+    <string name="initial_num_players">5</string>
 </resources>

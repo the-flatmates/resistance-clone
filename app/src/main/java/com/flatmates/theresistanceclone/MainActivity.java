@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
      * Called when the user taps the host game button
      */
     public void hostGame(View view) {
-        socketHandler = new SocketHandler("35.196.166.4", 9998);
+        socketHandler = new SocketHandler();
         socketHandler.execute();
         Game.setRole("host");
         Intent intent = new Intent(this, HostGame.class);
@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
      * Called when the user taps the join game button
      */
     public void joinGame(View view) {
-        socketHandler = new SocketHandler("35.196.166.4", 9998);
+        socketHandler = new SocketHandler();
         socketHandler.execute();
         Game.setRole("player");
         Intent intent = new Intent(this, JoinGame.class);

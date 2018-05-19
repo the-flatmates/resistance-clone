@@ -2,7 +2,7 @@ package com.flatmates.theresistanceclone;
 
 import java.util.Locale;
 
-public class Game {
+class Game {
     private static String role;
     private static String room_code;
     private static String player_name;
@@ -99,7 +99,7 @@ public class Game {
         return color_blind;
     }
 
-    public static synchronized void setColorBlind(boolean color_blindg) {
+    public static synchronized void setColorBlind(boolean color_blind) {
         Game.color_blind = color_blind;
     }
 

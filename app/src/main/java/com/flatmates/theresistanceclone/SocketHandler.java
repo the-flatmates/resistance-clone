@@ -9,9 +9,9 @@ class SocketHandler extends AsyncTask<Void, Void, Void> {
     private final String hostname;
     private final int port;
 
-    SocketHandler(String hostname, int port) {
-        this.hostname = hostname;
-        this.port = port;
+    SocketHandler() {
+        this.hostname = "35.196.166.4";
+        this.port = 9998;
     }
 
     @Override

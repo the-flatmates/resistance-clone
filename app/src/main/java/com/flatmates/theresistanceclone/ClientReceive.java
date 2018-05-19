@@ -10,6 +10,7 @@ import java.util.Arrays;
 class ClientReceive extends AsyncTask<Void, String, String> {
     private String response = "";
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     protected String doInBackground(Void... args) {
         try {
@@ -19,7 +20,7 @@ class ClientReceive extends AsyncTask<Void, String, String> {
             byte[] buffer = new byte[1024];
             int bytesRead;
             int messageLength;
-            bytesRead = inputStream.read(buffer, 0, 3);
+            inputStream.read(buffer, 0, 3);
             messageLength = Integer.parseInt(new String(Arrays.copyOfRange(buffer, 0, 2)).trim());
             bytesRead = inputStream.read(buffer, 0, messageLength);
             byteArrayOutputStream.write(buffer, 0, bytesRead);

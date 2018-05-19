@@ -10,8 +10,8 @@ import android.widget.TextView;
 import java.util.Locale;
 
 public class SpyReveal extends AppCompatActivity {
-    TextToSpeech tts;
-    TextView prompt;
+    private TextToSpeech tts;
+    private TextView prompt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

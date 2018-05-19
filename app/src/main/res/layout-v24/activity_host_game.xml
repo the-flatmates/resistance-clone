@@ -34,7 +34,8 @@
             android:text="@string/host_game"
             android:textSize="30sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlHardcoded" />
 
         <TextView
             android:id="@+id/tv_host_player_name_title"
@@ -45,8 +46,7 @@
             android:text="@string/name"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_host_game_title"
-            android:layout_marginLeft="24dp" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_host_game_title" />
 
         <EditText
             android:id="@+id/te_host_player_name"
@@ -59,8 +59,7 @@
             android:inputType="textPersonName"
             android:maxLength="32"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_host_player_name_title"
-            android:layout_marginLeft="24dp" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_host_player_name_title" />
 
         <TextView
             android:id="@+id/tv_num_players_title"
@@ -71,8 +70,7 @@
             android:text="@string/num_players"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/te_host_player_name"
-            android:layout_marginLeft="24dp" />
+            app:layout_constraintTop_toBottomOf="@+id/te_host_player_name" />
 
         <SeekBar
             android:id="@+id/sb_num_players"
@@ -85,9 +83,7 @@
             android:progress="0"
             app:layout_constraintEnd_toStartOf="@+id/tv_num_players"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_num_players_title"
-            android:layout_marginLeft="24dp"
-            tools:targetApi="n" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_num_players_title" />
 
         <TextView
             android:id="@+id/tv_num_players"
@@ -102,9 +98,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sb_num_players"
-            app:layout_constraintTop_toTopOf="@+id/sb_num_players"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintTop_toTopOf="@+id/sb_num_players" />
 
         <Switch
             android:id="@+id/sw_settings_targeting"
@@ -115,8 +109,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_settings_targeting"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="24dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Switch
             android:id="@+id/sw_settings_idiot_proof"
@@ -127,8 +120,7 @@
             app:layout_constraintEnd_toStartOf="@+id/tv_settings_idiot_proof"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/guideline"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="24dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Switch
             android:id="@+id/sw_settings_blind_spies"
@@ -137,8 +129,7 @@
             android:layout_marginStart="24dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_settings_blind_spies"
             app:layout_constraintEnd_toStartOf="@+id/tv_settings_blind_spies"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="24dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Switch
             android:id="@+id/sw_settings_color_blind"
@@ -147,8 +138,7 @@
             android:layout_marginStart="24dp"
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_settings_color_blind"
             app:layout_constraintEnd_toStartOf="@+id/tv_settings_color_blind"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginLeft="24dp" />
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Switch
             android:id="@+id/sw_settings_spy_reveal"
@@ -159,8 +149,7 @@
             app:layout_constraintBaseline_toBaselineOf="@+id/tv_settings_spy_reveal"
             app:layout_constraintEnd_toStartOf="@+id/tv_settings_spy_reveal"
             app:layout_constraintStart_toStartOf="parent"
-            tools:checked="true"
-            android:layout_marginLeft="24dp" />
+            tools:checked="true" />
 
         <TextView
             android:id="@+id/tv_settings_targeting"
@@ -173,9 +162,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sw_settings_targeting"
-            app:layout_constraintTop_toBottomOf="@+id/sb_num_players"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintTop_toBottomOf="@+id/sb_num_players" />
 
         <TextView
             android:id="@+id/tv_settings_idiot_proof"
@@ -188,9 +175,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sw_settings_idiot_proof"
-            app:layout_constraintTop_toBottomOf="@+id/tv_settings_targeting"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_settings_targeting" />
 
         <TextView
             android:id="@+id/tv_settings_blind_spies"
@@ -203,9 +188,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sw_settings_blind_spies"
-            app:layout_constraintTop_toBottomOf="@+id/tv_settings_idiot_proof"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_settings_idiot_proof" />
 
         <TextView
             android:id="@+id/tv_settings_spy_reveal"
@@ -218,9 +201,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sw_settings_spy_reveal"
-            app:layout_constraintTop_toBottomOf="@+id/tv_settings_color_blind"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_settings_color_blind" />
 
         <TextView
             android:id="@+id/tv_settings_color_blind"
@@ -233,9 +214,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/sw_settings_color_blind"
-            app:layout_constraintTop_toBottomOf="@+id/tv_settings_blind_spies"
-            android:layout_marginRight="24dp"
-            android:layout_marginLeft="8dp" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_settings_blind_spies" />
 
         <Button
             android:id="@+id/btn_host_game_submit"
