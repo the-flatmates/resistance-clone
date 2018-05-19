@@ -21,7 +21,7 @@ class ClientReceive extends AsyncTask<Void, String, String> {
             int bytesRead;
             int messageLength;
             inputStream.read(buffer, 0, 3);
-            messageLength = Integer.parseInt(new String(Arrays.copyOfRange(buffer, 0, 2)).trim());
+            messageLength = Integer.parseInt(new String(Arrays.copyOfRange(buffer, 0, 3)).trim());
             bytesRead = inputStream.read(buffer, 0, messageLength);
             byteArrayOutputStream.write(buffer, 0, bytesRead);
             response += byteArrayOutputStream.toString("UTF-8");
