@@ -19,6 +19,6 @@
     <string name="resistance_logo">Resistance Logo</string>
     <string name="spy_logo">Spy Logo</string>
     <string name="reveal_prompt">Everyone close your eyes.\n\nSpies open your eyes. Look around and
-        make sure that you know all the other Spies.\n\nSpies close your eyes. Everyone's eyes
+        make sure that you know all the other Spies.\n\nSpies close your eyes. Everyone\'s eyes
         should be closed.\n\nEveryone open your eyes.</string>
 </resources>
