@@ -6,7 +6,8 @@ public class Game {
     private static String role;
     private static String room_code;
     private static String player_name;
-    private static String[] player_names;
+    private static String allegiance;
+    private static String[] leader_order;
     private static int num_players;
     private static boolean targeting;
     private static boolean idiot_proof;
@@ -30,6 +31,14 @@ public class Game {
         Game.room_code = room_code;
     }
 
+    public static synchronized String getAllegiance() {
+        return allegiance;
+    }
+
+    public static synchronized void setAllegiance(String allegiance) {
+        Game.allegiance = allegiance;
+    }
+
     public static synchronized String getPlayerName() {
         return player_name;
     }
@@ -46,12 +55,12 @@ public class Game {
         Game.num_players = num_players;
     }
 
-    public static synchronized String[] getPlayerNames() {
-        return player_names;
+    public static synchronized String[] getLeaderOrder() {
+        return leader_order;
     }
 
-    public static synchronized void setPlayerNames(String[] player_names) {
-        Game.player_names = player_names;
+    public static synchronized void setLeaderOrder(String[] leader_order) {
+        Game.leader_order = leader_order;
     }
 
     public static synchronized boolean getTargeting() {
