@@ -91,12 +91,17 @@ public class Wait extends AppCompatActivity {
         return list;
     }
 
+    private String[] formatLeaderOrder(String strLeaderOrder) {
+        String substring = strLeaderOrder.substring(1, strLeaderOrder.length() - 1);
+        return substring.replaceAll("\"", "").split(",");
+    }
+
     private void setGameSettings(String settings) {
         try {
             JSONObject settingsJSON = new JSONObject(settings);
             Game.setAllegiance(settingsJSON.getString("allegiance"));
             Game.setNumPlayers(settingsJSON.getInt("numPlayers"));
-            Game.setLeaderOrder(settingsJSON.getJSONArray("leaderOrder").toString().replace("},{", " ,").split(" "));
+            Game.setLeaderOrder(formatLeaderOrder(settingsJSON.getJSONArray("leaderOrder").toString()));
             Game.setRoundInfo(JSONArrayToList(settingsJSON.getJSONArray("roundInfo")));
             Game.setTargeting(settingsJSON.getJSONObject("settings").getBoolean("targeting"));
             Game.setIdiotProof(settingsJSON.getJSONObject("settings").getBoolean("idiotProof"));
