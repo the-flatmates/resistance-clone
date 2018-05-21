@@ -10,6 +10,7 @@ class Game {
     private static String allegiance;
     private static String[] leaderOrder;
     private static List<int[]> roundInfo;
+    private static boolean[] roundCompletion;
     private static int numPlayers;
     private static boolean targeting;
     private static boolean idiotProof;
@@ -29,8 +30,8 @@ class Game {
         return roomCode;
     }
 
-    public static synchronized void setRoomCode(String room_code) {
-        Game.roomCode = room_code;
+    public static synchronized void setRoomCode(String roomCode) {
+        Game.roomCode = roomCode;
     }
 
     public static synchronized String getAllegiance() {
@@ -45,32 +46,40 @@ class Game {
         return playerName;
     }
 
-    public static synchronized void setPlayerName(String player_name) {
-        Game.playerName = player_name;
+    public static synchronized void setPlayerName(String playerName) {
+        Game.playerName = playerName;
     }
 
     public static synchronized String[] getLeaderOrder() {
         return leaderOrder;
     }
 
-    public static synchronized void setLeaderOrder(String[] leader_order) {
-        Game.leaderOrder = leader_order;
+    public static synchronized void setLeaderOrder(String[] leaderOrder) {
+        Game.leaderOrder = leaderOrder;
     }
 
     public static synchronized List<int[]> getRoundInfo() {
         return roundInfo;
     }
 
-    public static synchronized void setRoundInfo(List<int[]> round_info) {
-        Game.roundInfo = round_info;
+    public static synchronized void setRoundInfo(List<int[]> roundInfo) {
+        Game.roundInfo = roundInfo;
+    }
+
+    public static synchronized boolean[] getRoundCompletion() {
+        return roundCompletion;
+    }
+
+    public static synchronized void setRoundCompletion(boolean[] roundCompletion) {
+        Game.roundCompletion = roundCompletion;
     }
 
     public static synchronized int getNumPlayers() {
         return numPlayers;
     }
 
-    public static synchronized void setNumPlayers(int num_players) {
-        Game.numPlayers = num_players;
+    public static synchronized void setNumPlayers(int numPlayers) {
+        Game.numPlayers = numPlayers;
     }
 
     public static synchronized boolean getTargeting() {
@@ -85,32 +94,32 @@ class Game {
         return idiotProof;
     }
 
-    public static synchronized void setIdiotProof(boolean idiot_proof) {
-        Game.idiotProof = idiot_proof;
+    public static synchronized void setIdiotProof(boolean idiotProof) {
+        Game.idiotProof = idiotProof;
     }
 
     public static synchronized boolean getBlindSpied() {
         return blindSpies;
     }
 
-    public static synchronized void setBlindSpies(boolean blind_spies) {
-        Game.blindSpies = blind_spies;
+    public static synchronized void setBlindSpies(boolean blindSpies) {
+        Game.blindSpies = blindSpies;
     }
 
     public static synchronized boolean getSpyReveal() {
         return spyReveal;
     }
 
-    public static synchronized void setSpyReveal(boolean spy_reveal) {
-        Game.spyReveal = spy_reveal;
+    public static synchronized void setSpyReveal(boolean spyReveal) {
+        Game.spyReveal = spyReveal;
     }
 
     public static synchronized boolean getColorBlind() {
         return colorBlind;
     }
 
-    public static synchronized void setColorBlind(boolean color_blind) {
-        Game.colorBlind = color_blind;
+    public static synchronized void setColorBlind(boolean colorBlind) {
+        Game.colorBlind = colorBlind;
     }
 
     public static String createMessage(String type, String message) {
