@@ -9,7 +9,7 @@ class Game {
     private static String playerName;
     private static String allegiance;
     private static String[] leaderOrder;
-    private static int leader;
+    private static int leader = 0;
     private static List<int[]> roundInfo;
     private static boolean[] roundCompletion;
     private static int numPlayers;
