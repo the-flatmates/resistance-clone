@@ -67,6 +67,8 @@ public class JoinGame extends AppCompatActivity {
      * Called when the user taps the submit button
      */
     public void submit(View view) {
+        Game.setPlayerName(te_player_name.getText().toString());
+        Game.setRoomCode(te_room_code.getText().toString().toUpperCase());
         sendSettings();
         String response = receiveResponse();
         if (response.equals("0")) {
@@ -75,16 +77,15 @@ public class JoinGame extends AppCompatActivity {
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
         } else {
             Intent intent = new Intent(this, Wait.class);
-            Game.setRoomCode(te_room_code.getText().toString().toUpperCase());
             startActivity(intent);
         }
     }
 
     private void sendSettings() {
         ClientSend c = new ClientSend();
-        String roomCodeMessage = Game.createMessage("p", te_room_code.getText().toString().toUpperCase());
-        String playerName = Game.createMessage("n", te_player_name.getText().toString());
-        String[] params = {"p", roomCodeMessage, playerName};
+        String roomCodeMessage = Game.createMessage("p", Game.getRoomCode());
+        String playerNameMessage = Game.createMessage("n", Game.getPlayerName());
+        String[] params = {"p", roomCodeMessage, playerNameMessage};
         try {
             c.execute(params);
         } catch (Exception e) {

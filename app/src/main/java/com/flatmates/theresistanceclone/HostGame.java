@@ -53,6 +53,7 @@ public class HostGame extends AppCompatActivity {
      */
     public void submit(View view) {
         Intent intent = new Intent(this, Wait.class);
+        Game.setPlayerName(te_host_player_name.getText().toString());
         sendSettings();
         receiveRoomCode();
         startActivity(intent);
@@ -73,8 +74,8 @@ public class HostGame extends AppCompatActivity {
     private void sendSettings() {
         String settings = getSettings();
         String settingsMessage = Game.createMessage("h", settings + String.format(Locale.US, "%02d", num_players));
-        String playerName = Game.createMessage("n", te_host_player_name.getText().toString());
-        String[] params = {"h", settingsMessage, playerName};
+        String playerNameMessage = Game.createMessage("n", Game.getPlayerName());
+        String[] params = {"h", settingsMessage, playerNameMessage};
         ClientSend c = new ClientSend();
         try {
             c.execute(params);
@@ -85,12 +86,12 @@ public class HostGame extends AppCompatActivity {
 
     private void receiveRoomCode() {
         ClientReceive r = new ClientReceive();
-        String room_code = "";
+        String roomCode = "";
         try {
-            room_code = r.execute().get();
+            roomCode = r.execute().get();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        Game.setRoomCode(room_code);
+        Game.setRoomCode(roomCode);
     }
 }
