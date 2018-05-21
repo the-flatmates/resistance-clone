@@ -9,6 +9,7 @@ class Game {
     private static String playerName;
     private static String allegiance;
     private static String[] leaderOrder;
+    private static int leader;
     private static List<int[]> roundInfo;
     private static boolean[] roundCompletion;
     private static int numPlayers;
@@ -56,6 +57,14 @@ class Game {
 
     public static synchronized void setLeaderOrder(String[] leaderOrder) {
         Game.leaderOrder = leaderOrder;
+    }
+
+    public static synchronized int getLeader() {
+        return leader;
+    }
+
+    public static synchronized void setLeader(int leader) {
+        Game.leader = leader;
     }
 
     public static synchronized List<int[]> getRoundInfo() {
