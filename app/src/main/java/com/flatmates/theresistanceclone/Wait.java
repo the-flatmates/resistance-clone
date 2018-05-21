@@ -3,7 +3,6 @@ package com.flatmates.theresistanceclone;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,9 +42,13 @@ public class Wait extends AppCompatActivity {
             btn_ready_wait.setEnabled(false);
             String start = receiveStart();
             if (start.equals("s")) {
-                // TODO: Determine if leader or not, then start mission screen
-//                Intent intent = new Intent(Wait.this, Mission.class);
-//                startActivity(intent);
+                if (Game.getPlayerName().equals(Game.getLeaderOrder()[Game.getLeader()])) {
+                    Intent intent = new Intent(Wait.this, SelectMissionTeam.class);
+                    startActivity(intent);
+                } else {
+                    Intent intent = new Intent(Wait.this, VoteMissionTeam.class);
+                    startActivity(intent);
+                }
             }
         }
     }

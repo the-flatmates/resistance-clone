@@ -43,8 +43,12 @@ public class SpyReveal extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        // TODO: Determine if leader or not, then start mission screen
-//        Intent intent = new Intent(Wait.this, Mission.class);
-//        startActivity(intent);
+        if (Game.getPlayerName().equals(Game.getLeaderOrder()[Game.getLeader()])) {
+            Intent intent = new Intent(SpyReveal.this, SelectMissionTeam.class);
+            startActivity(intent);
+        } else {
+            Intent intent = new Intent(SpyReveal.this, VoteMissionTeam.class);
+            startActivity(intent);
+        }
     }
 }
