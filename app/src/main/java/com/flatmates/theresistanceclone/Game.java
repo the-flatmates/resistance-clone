@@ -10,8 +10,10 @@ class Game {
     private static String allegiance;
     private static String[] leaderOrder;
     private static int leader = 0;
-    private static List<int[]> roundInfo;
-    private static boolean[] roundCompletion;
+    private static List<int[]> missionInfo;
+    private static int[] missionResults;
+    private static int mission = 0;
+    private static int voteTrack = 1;
     private static int numPlayers;
     private static boolean targeting;
     private static boolean idiotProof;
@@ -67,20 +69,36 @@ class Game {
         Game.leader = leader;
     }
 
-    public static synchronized List<int[]> getRoundInfo() {
-        return roundInfo;
+    public static synchronized List<int[]> getMissionInfo() {
+        return missionInfo;
     }
 
-    public static synchronized void setRoundInfo(List<int[]> roundInfo) {
-        Game.roundInfo = roundInfo;
+    public static synchronized void setMissionInfo(List<int[]> missionInfo) {
+        Game.missionInfo = missionInfo;
     }
 
-    public static synchronized boolean[] getRoundCompletion() {
-        return roundCompletion;
+    public static synchronized int[] getMissionResults() {
+        return missionResults;
     }
 
-    public static synchronized void setRoundCompletion(boolean[] roundCompletion) {
-        Game.roundCompletion = roundCompletion;
+    public static synchronized void setMissionResults(int[] roundCompletion) {
+        Game.missionResults = missionResults;
+    }
+
+    public static synchronized int getMission() {
+        return mission;
+    }
+
+    public static synchronized void setMission(int mission) {
+        Game.mission = mission;
+    }
+
+    public static synchronized int getVoteTrack() {
+        return voteTrack;
+    }
+
+    public static synchronized void setVoteTrack(int voteTrack) {
+        Game.voteTrack = voteTrack;
     }
 
     public static synchronized int getNumPlayers() {
