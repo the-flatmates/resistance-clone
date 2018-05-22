@@ -9,6 +9,7 @@
     <string name="name_hint">Enter Player Name</string>
     <string name="num_players">Number of Players</string>
     <string name="submit">Submit</string>
+    <string name="confirm">Confirm</string>
     <string name="settings_targeting">Targeting</string>
     <string name="settings_idiot_proof">Idiot Proof</string>
     <string name="settings_blind_spies">Blind Spies</string>
@@ -22,4 +23,6 @@
         make sure that you know all the other Spies.\n\nSpies close your eyes. Everyone\'s eyes
         should be closed.\n\nEveryone open your eyes.</string>
     <string name="initial_num_players">5</string>
+    <string name="mission">Mission </string>
+    <string name="team">Team:</string>
 </resources>
