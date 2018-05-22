@@ -18,7 +18,6 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -26,7 +25,6 @@
             android:name=".HostGame"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean">
-
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -36,7 +34,6 @@
             android:name=".JoinGame"
             android:parentActivityName=".MainActivity"
             tools:targetApi="jelly_bean">
-
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -46,7 +43,6 @@
             android:name=".Wait"
             android:parentActivityName=".JoinGame"
             tools:targetApi="jelly_bean">
-
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -56,15 +52,37 @@
             android:name=".SpyReveal"
             android:parentActivityName=".Wait"
             tools:targetApi="jelly_bean">
-
             <!-- The meta-data tag is required if you support API level 15 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".SelectMissionTeam" />
-        <activity android:name=".VoteMissionTeam" />
-        <activity android:name=".Mission"></activity>
+        <activity
+            android:name=".SelectMissionTeam"
+            android:parentActivityName=".Wait"
+            tools:targetApi="jelly_bean">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".VoteMissionTeam"
+            android:parentActivityName=".Wait"
+            tools:targetApi="jelly_bean">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".Mission"
+            android:parentActivityName=".Wait"
+            tools:targetApi="jelly_bean">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
-
 </manifest>
