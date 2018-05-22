@@ -102,7 +102,7 @@ public class Wait extends AppCompatActivity {
             Game.setAllegiance(settingsJSON.getString("allegiance"));
             Game.setNumPlayers(settingsJSON.getInt("numPlayers"));
             Game.setLeaderOrder(formatLeaderOrder(settingsJSON.getJSONArray("leaderOrder").toString()));
-            Game.setRoundInfo(JSONArrayToList(settingsJSON.getJSONArray("roundInfo")));
+            Game.setMissionInfo(JSONArrayToList(settingsJSON.getJSONArray("roundInfo")));
             Game.setTargeting(settingsJSON.getJSONObject("settings").getBoolean("targeting"));
             Game.setIdiotProof(settingsJSON.getJSONObject("settings").getBoolean("idiotProof"));
             Game.setBlindSpies(settingsJSON.getJSONObject("settings").getBoolean("blindSpies"));
