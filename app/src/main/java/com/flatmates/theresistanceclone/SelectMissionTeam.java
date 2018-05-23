@@ -50,10 +50,13 @@ public class SelectMissionTeam extends AppCompatActivity {
     private void setVoteTracker() {
         LinearLayout ll_vote_tracker = findViewById(R.id.ll_vote_tracker);
         TextView tv_vote_track = (TextView) ll_vote_tracker.getChildAt(Game.getVoteTrack() - 1);
-        tv_vote_track.setTextColor(Color.RED);
+        tv_vote_track.setBackgroundResource(R.drawable.ic_my_location_black_24dp);
     }
 
     private void setMissionInfo() {
+        TextView tv_mission_title = findViewById(R.id.tv_mission_title);
+        String missionText = "Mission " + String.valueOf(Game.getMission()) + ":";
+        tv_mission_title.setText(missionText);
         TextView tv_mission_info = findViewById(R.id.tv_mission_info);
         String missionSize = Integer.toString(Game.getMissionInfo().get(Game.getMission() - 1)[0]);
         String numFails = Integer.toString(Game.getMissionInfo().get(Game.getMission() - 1)[1]);
