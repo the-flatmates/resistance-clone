@@ -31,18 +31,19 @@ public class SelectMissionTeam extends AppCompatActivity {
         LinearLayout ll_mission_markers = findViewById(R.id.ll_mission_markers);
         for (int i = 0; i < ll_mission_markers.getChildCount(); i++) {
             TextView tv_mission_marker = (TextView) ll_mission_markers.getChildAt(i);
-            if (Game.isTargeting()) {
-                tv_mission_marker.setClickable(true);
-            }
             if (Game.getMissionResults()[i] == -1) {
+                tv_mission_marker.setClickable(false);
                 tv_mission_marker.setTextColor(Color.RED);
             } else if (Game.getMissionResults()[i] == 1) {
+                tv_mission_marker.setClickable(false);
                 tv_mission_marker.setTextColor(Color.BLUE);
             } else {
-                tv_mission_marker.setTextColor(Color.BLACK);
+                if (Game.isTargeting()) {
+                    tv_mission_marker.setClickable(true);
+                }
             }
             if ((Game.getMission() - 1) == i) {
-                tv_mission_marker.setTextColor(Color.GREEN);
+                tv_mission_marker.setBackgroundResource(R.drawable.ic_radio_button_checked_black_24dp);
             }
         }
     }
@@ -82,9 +83,9 @@ public class SelectMissionTeam extends AppCompatActivity {
             if (Game.getMissionResults()[mission - 1] == 0) {
                 LinearLayout ll_mission_markers = findViewById(R.id.ll_mission_markers);
                 TextView tv_mission_marker_old = (TextView) ll_mission_markers.getChildAt(Game.getMission() - 1);
-                tv_mission_marker_old.setTextColor(Color.BLACK);
+                tv_mission_marker_old.setBackgroundResource(R.drawable.ic_panorama_fish_eye_black_24dp);
                 Game.setMission(mission);
-                tv_mission_marker.setTextColor(Color.GREEN);
+                tv_mission_marker.setBackgroundResource(R.drawable.ic_radio_button_checked_black_24dp);
                 setMissionInfo();
             }
         }
