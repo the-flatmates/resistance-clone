@@ -1,13 +1,17 @@
 package com.flatmates.theresistanceclone;
 
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
+
+import java.util.ArrayList;
 
 
 public class SelectMissionTeam extends AppCompatActivity {
@@ -27,7 +31,7 @@ public class SelectMissionTeam extends AppCompatActivity {
         LinearLayout ll_mission_markers = findViewById(R.id.ll_mission_markers);
         for (int i = 0; i < ll_mission_markers.getChildCount(); i++) {
             TextView tv_mission_marker = (TextView) ll_mission_markers.getChildAt(i);
-            if (Game.getTargeting()) {
+            if (Game.isTargeting()) {
                 tv_mission_marker.setClickable(true);
             }
             if (Game.getMissionResults()[i] == -1) {
@@ -69,12 +73,9 @@ public class SelectMissionTeam extends AppCompatActivity {
     }
 
     public void onClickMission(View view) {
-        Log.d("Targeting", Boolean.toString(Game.getTargeting()));
-        if (Game.getTargeting()) {
+        if (Game.isTargeting()) {
             TextView tv_mission_marker = findViewById(view.getId());
-            Log.d("Tag", String.valueOf(tv_mission_marker.getTag()));
             int mission = Integer.valueOf(String.valueOf(tv_mission_marker.getTag()));
-            Log.d("Mission", String.valueOf(mission));
             if (Game.getMissionResults()[mission - 1] == 0) {
                 LinearLayout ll_mission_markers = findViewById(R.id.ll_mission_markers);
                 TextView tv_mission_marker_old = (TextView) ll_mission_markers.getChildAt(Game.getMission() - 1);
@@ -86,7 +87,48 @@ public class SelectMissionTeam extends AppCompatActivity {
         }
     }
 
-    public void confirmMission(View view) {
+    private boolean isTeamValid() {
+        LinearLayout ll_team_selection = findViewById(R.id.ll_team_selection);
+        ArrayList<String> teamSelection = new ArrayList<>();
+        int teamCount = 0;
+        for (int i = 0; i < ll_team_selection.getChildCount(); i++) {
+            ToggleButton toggleButton = (ToggleButton) ll_team_selection.getChildAt(i);
+            if (toggleButton.isChecked()) {
+                teamCount++;
+                teamSelection.add(toggleButton.getText().toString());
+            }
+        }
+        if (teamCount == Game.getMissionInfo().get(Game.getMission() - 1)[0]) {
+            Game.setCurrentTeam(teamSelection.toArray(new String[0]));
+            return true;
+        }
+        return false;
+    }
 
+    private void sendTeamSelection() {
+        String missionMessage = Game.createMessage("m", String.valueOf(Game.getMission()));
+        StringBuilder teamSelectionMessage = new StringBuilder();
+        for (String playerName : Game.getCurrentTeam()) {
+            teamSelectionMessage.append(Game.createMessage("t", playerName));
+        }
+        String[] params = {missionMessage, teamSelectionMessage.toString()};
+        ClientSend c = new ClientSend();
+        try {
+            c.execute(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void confirmTeamSelection(View view) {
+        if (isTeamValid()) {
+            Intent intent = new Intent(SelectMissionTeam.this, VoteMissionTeam.class);
+            sendTeamSelection();
+            startActivity(intent);
+        } else {
+            Context context = getApplicationContext();
+            String message = "Invalid team selection!";
+            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        }
     }
 }

@@ -12,6 +12,7 @@ class Game {
     private static int leader = 0;
     private static List<int[]> missionInfo;
     private static int[] missionResults = {0, 0, 0, 0, 0};
+    private static String[] currentTeam;
     private static int mission = 1;
     private static int voteTrack = 1;
     private static int numPlayers;
@@ -85,6 +86,14 @@ class Game {
         Game.missionResults = missionResults;
     }
 
+    public static synchronized String[] getCurrentTeam() {
+        return currentTeam;
+    }
+
+    public static void setCurrentTeam(String[] currentTeam) {
+        Game.currentTeam = currentTeam;
+    }
+
     public static synchronized int getMission() {
         return mission;
     }
@@ -109,7 +118,7 @@ class Game {
         Game.numPlayers = numPlayers;
     }
 
-    public static synchronized boolean getTargeting() {
+    public static synchronized boolean isTargeting() {
         return targeting;
     }
 
@@ -117,7 +126,7 @@ class Game {
         Game.targeting = targeting;
     }
 
-    public static synchronized boolean getIdiotProof() {
+    public static synchronized boolean isIdiotProof() {
         return idiotProof;
     }
 
@@ -125,7 +134,7 @@ class Game {
         Game.idiotProof = idiotProof;
     }
 
-    public static synchronized boolean getBlindSpied() {
+    public static synchronized boolean isBlindSpies() {
         return blindSpies;
     }
 
@@ -133,7 +142,7 @@ class Game {
         Game.blindSpies = blindSpies;
     }
 
-    public static synchronized boolean getSpyReveal() {
+    public static synchronized boolean isSpyReveal() {
         return spyReveal;
     }
 
@@ -141,7 +150,7 @@ class Game {
         Game.spyReveal = spyReveal;
     }
 
-    public static synchronized boolean getColorBlind() {
+    public static synchronized boolean isColorBlind() {
         return colorBlind;
     }
 
