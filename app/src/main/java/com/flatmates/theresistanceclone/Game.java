@@ -11,8 +11,8 @@ class Game {
     private static String[] leaderOrder;
     private static int leader = 0;
     private static List<int[]> missionInfo;
-    private static int[] missionResults;
-    private static int mission = 0;
+    private static int[] missionResults = {0, 0, 0, 0, 0};
+    private static int mission = 1;
     private static int voteTrack = 1;
     private static int numPlayers;
     private static boolean targeting;
