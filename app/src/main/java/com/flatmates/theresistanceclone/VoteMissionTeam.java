@@ -71,11 +71,24 @@ public class VoteMissionTeam extends AppCompatActivity {
         Context context = getApplicationContext();
         String message = "Mission accepted!";
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        sendVote("t");
     }
 
     public void onClickReject(View view) {
         Context context = getApplicationContext();
         String message = "Mission rejected!";
         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        sendVote("f");
+    }
+
+    private void sendVote(String vote) {
+        ClientSend c = new ClientSend();
+        String voteMessage = Game.createMessage("v", vote);
+        String[] params = {voteMessage};
+        try {
+            c.execute(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
