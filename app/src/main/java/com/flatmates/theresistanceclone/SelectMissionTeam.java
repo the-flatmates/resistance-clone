@@ -11,6 +11,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import org.json.JSONArray;
+
 import java.util.ArrayList;
 
 
@@ -128,11 +130,33 @@ public class SelectMissionTeam extends AppCompatActivity {
         if (isTeamValid()) {
             Intent intent = new Intent(SelectMissionTeam.this, VoteMissionTeam.class);
             sendTeamSelection();
+            setTeamSelection(getTeamSelection());
             startActivity(intent);
         } else {
             Context context = getApplicationContext();
             String message = "Invalid team selection!";
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
         }
+    }
+
+    private void setTeamSelection(String jsonTeamSelection) {
+        try {
+            String teamSelection = new JSONArray(jsonTeamSelection).toString();
+            String substring = teamSelection.substring(1, teamSelection.length() - 1);
+            Game.setCurrentTeam(substring.replaceAll("\"", "").split(","));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getTeamSelection() {
+        ClientReceive r = new ClientReceive();
+        String response = "";
+        try {
+            response = r.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
     }
 }

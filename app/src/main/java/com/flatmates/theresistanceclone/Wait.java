@@ -47,6 +47,7 @@ public class Wait extends AppCompatActivity {
                     startActivity(intent);
                 } else {
                     Intent intent = new Intent(Wait.this, VoteMissionTeam.class);
+                    setTeamSelection(getTeamSelection());
                     startActivity(intent);
                 }
             }
@@ -115,6 +116,27 @@ public class Wait extends AppCompatActivity {
     }
 
     private String receiveStart() {
+        ClientReceive r = new ClientReceive();
+        String response = "";
+        try {
+            response = r.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    private void setTeamSelection(String jsonTeamSelection) {
+        try {
+            String teamSelection = new JSONArray(jsonTeamSelection).toString();
+            String substring = teamSelection.substring(1, teamSelection.length() - 1);
+            Game.setCurrentTeam(substring.replaceAll("\"", "").split(","));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String getTeamSelection() {
         ClientReceive r = new ClientReceive();
         String response = "";
         try {
