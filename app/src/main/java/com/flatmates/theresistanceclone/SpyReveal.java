@@ -48,6 +48,8 @@ public class SpyReveal extends AppCompatActivity {
             startActivity(intent);
         } else {
             Intent intent = new Intent(SpyReveal.this, VoteMissionTeam.class);
+            Game.getMissionSelection();
+            Game.setTeamSelection(Game.getTeamSelection());
             startActivity(intent);
         }
     }

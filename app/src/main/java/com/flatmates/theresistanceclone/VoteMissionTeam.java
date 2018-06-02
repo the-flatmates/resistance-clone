@@ -11,52 +11,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONArray;
-
 public class VoteMissionTeam extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vote_mission_team);
-        getMissionSelection();
-        setTeamSelection(getTeamSelection());
         updateMissionMarkers();
         setVoteTracker();
         setMissionInfo();
         showTeamSelection();
-    }
-
-    private void getMissionSelection() {
-        ClientReceive r = new ClientReceive();
-        String response = "";
-        try {
-            response = r.execute().get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Game.setMission(Integer.valueOf(response));
-    }
-
-    private void setTeamSelection(String jsonTeamSelection) {
-        try {
-            String teamSelection = new JSONArray(jsonTeamSelection).toString();
-            String substring = teamSelection.substring(1, teamSelection.length() - 1);
-            Game.setCurrentTeam(substring.replaceAll("\"", "").split(","));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private String getTeamSelection() {
-        ClientReceive r = new ClientReceive();
-        String response = "";
-        try {
-            response = r.execute().get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return response;
     }
 
     private void updateMissionMarkers() {

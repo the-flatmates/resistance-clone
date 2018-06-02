@@ -36,20 +36,40 @@ public class Wait extends AppCompatActivity {
         setGameSettings(settings);
 
         if (Game.getRole().equals("host")) {
-            Intent intent = new Intent(Wait.this, SpyReveal.class);
-            startActivity(intent);
-        } else {
-            btn_ready_wait.setEnabled(false);
-            String start = receiveStart();
-            if (start.equals("s")) {
-                if (Game.getPlayerName().equals(Game.getLeaderOrder()[Game.getLeader()])) {
-                    Intent intent = new Intent(Wait.this, SelectMissionTeam.class);
-                    startActivity(intent);
-                } else {
-                    Intent intent = new Intent(Wait.this, VoteMissionTeam.class);
-                    startActivity(intent);
-                }
+            if (Game.isSpyReveal()) {
+                Intent intent = new Intent(Wait.this, SpyReveal.class);
+                startActivity(intent);
+            } else {
+                sendStart();
+                getNextActivity("s");
             }
+        } else {
+            getNextActivity(receiveStart());
+        }
+    }
+
+    private void getNextActivity(String result) {
+        btn_ready_wait.setEnabled(false);
+        if (result.equals("s")) {
+            if (Game.getPlayerName().equals(Game.getLeaderOrder()[Game.getLeader()])) {
+                Intent intent = new Intent(Wait.this, SelectMissionTeam.class);
+                startActivity(intent);
+            } else {
+                Intent intent = new Intent(Wait.this, VoteMissionTeam.class);
+                Game.getMissionSelection();
+                Game.setTeamSelection(Game.getTeamSelection());
+                startActivity(intent);
+            }
+        }
+    }
+
+    private void sendStart() {
+        ClientSend c = new ClientSend();
+        String[] params = {"s000"};
+        try {
+            c.execute(params);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
