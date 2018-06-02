@@ -1,5 +1,7 @@
 package com.flatmates.theresistanceclone;
 
+import org.json.JSONArray;
+
 import java.util.List;
 import java.util.Locale;
 
@@ -160,5 +162,37 @@ class Game {
 
     public static String createMessage(String type, String message) {
         return (type + String.format(Locale.US, "%03d", message.length()) + message);
+    }
+
+    public static void getMissionSelection() {
+        ClientReceive r = new ClientReceive();
+        String response = "";
+        try {
+            response = r.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        setMission(Integer.valueOf(response));
+    }
+
+    public static String getTeamSelection() {
+        ClientReceive r = new ClientReceive();
+        String response = "";
+        try {
+            response = r.execute().get();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return response;
+    }
+
+    public static void setTeamSelection(String jsonTeamSelection) {
+        try {
+            String teamSelection = new JSONArray(jsonTeamSelection).toString();
+            String substring = teamSelection.substring(1, teamSelection.length() - 1);
+            setCurrentTeam(substring.replaceAll("\"", "").split(","));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
