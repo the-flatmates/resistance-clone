@@ -13,7 +13,7 @@
         android:layout_marginTop="16dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -205,8 +205,10 @@
         android:textColor="@android:color/black"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@+id/tv_mission_info"
-        tools:layout_editor_absoluteX="158dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_mission_info" />
 
     <ScrollView
         android:id="@+id/sv_team_selection"
@@ -214,10 +216,10 @@
         android:layout_height="0dp"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:fillViewport="true"
+        android:layout_weight="1"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_team_title">
 
@@ -225,9 +227,7 @@
             android:id="@+id/ll_team_selection"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-        </LinearLayout>
+            android:orientation="vertical" />
     </ScrollView>
 
     <LinearLayout
@@ -244,8 +244,10 @@
         <Button
             android:id="@+id/btn_success"
             style="@android:style/Widget.Holo.Button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onClickSuccess"
             android:text="@string/success"
             tools:layout_editor_absoluteX="49dp"
             tools:layout_editor_absoluteY="414dp" />
@@ -253,8 +255,10 @@
         <Button
             android:id="@+id/btn_fail"
             style="@android:style/Widget.Holo.Button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:onClick="onClickFail"
             android:text="@string/fail"
             tools:layout_editor_absoluteX="236dp"
             tools:layout_editor_absoluteY="414dp" />

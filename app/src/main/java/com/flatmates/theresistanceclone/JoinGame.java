@@ -70,7 +70,7 @@ public class JoinGame extends AppCompatActivity {
         Game.setPlayerName(te_player_name.getText().toString());
         Game.setRoomCode(te_room_code.getText().toString().toUpperCase());
         sendSettings();
-        String response = receiveResponse();
+        String response = Game.receiveMessage();
         if (response.equals("0")) {
             Context context = getApplicationContext();
             String message = "Room does not exist!";
@@ -82,25 +82,9 @@ public class JoinGame extends AppCompatActivity {
     }
 
     private void sendSettings() {
-        ClientSend c = new ClientSend();
         String roomCodeMessage = Game.createMessage("p", Game.getRoomCode());
         String playerNameMessage = Game.createMessage("n", Game.getPlayerName());
         String[] params = {"p", roomCodeMessage, playerNameMessage};
-        try {
-            c.execute(params);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private String receiveResponse() {
-        ClientReceive r = new ClientReceive();
-        String response = "";
-        try {
-            response = r.execute().get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return response;
+        Game.sendMessage(params);
     }
 }

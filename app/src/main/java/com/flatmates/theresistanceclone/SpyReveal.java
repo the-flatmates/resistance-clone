@@ -36,20 +36,15 @@ public class SpyReveal extends AppCompatActivity {
     }
 
     public void sendStart(View view) {
-        ClientSend c = new ClientSend();
         String[] params = {"s000"};
-        try {
-            c.execute(params);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Game.sendMessage(params);
         if (Game.getPlayerName().equals(Game.getLeaderOrder()[Game.getLeader()])) {
             Intent intent = new Intent(SpyReveal.this, SelectMissionTeam.class);
             startActivity(intent);
         } else {
             Intent intent = new Intent(SpyReveal.this, VoteMissionTeam.class);
-            Game.getMissionSelection();
-            Game.setTeamSelection(Game.getTeamSelection());
+            Game.setMission(Integer.valueOf(Game.receiveMessage()));
+            Game.setTeamSelection(Game.receiveMessage());
             startActivity(intent);
         }
     }

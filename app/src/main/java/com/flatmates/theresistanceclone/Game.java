@@ -68,8 +68,12 @@ class Game {
         return leader;
     }
 
-    public static synchronized void setLeader(int leader) {
-        Game.leader = leader;
+    public static synchronized void incrementLeader() {
+        if (Game.leader < Game.numPlayers - 2) {
+            Game.leader++;
+        } else {
+            Game.leader = 0;
+        }
     }
 
     public static synchronized List<int[]> getMissionInfo() {
@@ -84,8 +88,8 @@ class Game {
         return missionResults;
     }
 
-    public static synchronized void setMissionResults(int[] roundCompletion) {
-        Game.missionResults = missionResults;
+    public static synchronized void setMissionResults(int mission, int result) {
+        Game.missionResults[mission] = result;
     }
 
     public static synchronized String[] getCurrentTeam() {
@@ -102,6 +106,18 @@ class Game {
 
     public static synchronized void setMission(int mission) {
         Game.mission = mission;
+    }
+
+    public static synchronized void incrementMission() {
+        if (!isTargeting() && Game.mission < 5) {
+            Game.mission++;
+        } else {
+            for (int i = 0; i < 5; i++) {
+                if (missionResults[i] == 0) {
+                    Game.mission = i + 1;
+                }
+            }
+        }
     }
 
     public static synchronized int getVoteTrack() {
@@ -164,18 +180,7 @@ class Game {
         return (type + String.format(Locale.US, "%03d", message.length()) + message);
     }
 
-    public static void getMissionSelection() {
-        ClientReceive r = new ClientReceive();
-        String response = "";
-        try {
-            response = r.execute().get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        setMission(Integer.valueOf(response));
-    }
-
-    public static String getTeamSelection() {
+    public static String receiveMessage() {
         ClientReceive r = new ClientReceive();
         String response = "";
         try {
@@ -184,6 +189,15 @@ class Game {
             e.printStackTrace();
         }
         return response;
+    }
+
+    public static void sendMessage(String[] params) {
+        ClientSend c = new ClientSend();
+        try {
+            c.execute(params);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     public static void setTeamSelection(String jsonTeamSelection) {

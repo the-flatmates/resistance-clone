@@ -119,18 +119,15 @@ public class SelectMissionTeam extends AppCompatActivity {
             teamSelectionMessage.append(Game.createMessage("t", playerName));
         }
         String[] params = {missionMessage, teamSelectionMessage.toString()};
-        ClientSend c = new ClientSend();
-        try {
-            c.execute(params);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Game.sendMessage(params);
     }
 
     public void confirmTeamSelection(View view) {
         if (isTeamValid()) {
             Intent intent = new Intent(SelectMissionTeam.this, VoteMissionTeam.class);
             sendTeamSelection();
+            Game.setMission(Integer.valueOf(Game.receiveMessage()));
+            Game.setTeamSelection(Game.receiveMessage());
             startActivity(intent);
         } else {
             Context context = getApplicationContext();

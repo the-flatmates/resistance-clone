@@ -31,7 +31,7 @@ public class Wait extends AppCompatActivity {
      */
     public void ready(View view) {
         sendReady();
-        String settings = receiveSettings();
+        String settings = Game.receiveMessage();
 
         setGameSettings(settings);
 
@@ -44,7 +44,7 @@ public class Wait extends AppCompatActivity {
                 getNextActivity("s");
             }
         } else {
-            getNextActivity(receiveStart());
+            getNextActivity(Game.receiveMessage());
         }
     }
 
@@ -56,42 +56,21 @@ public class Wait extends AppCompatActivity {
                 startActivity(intent);
             } else {
                 Intent intent = new Intent(Wait.this, VoteMissionTeam.class);
-                Game.getMissionSelection();
-                Game.setTeamSelection(Game.getTeamSelection());
+                Game.setMission(Integer.valueOf(Game.receiveMessage()));
+                Game.setTeamSelection(Game.receiveMessage());
                 startActivity(intent);
             }
         }
     }
 
     private void sendStart() {
-        ClientSend c = new ClientSend();
         String[] params = {"s000"};
-        try {
-            c.execute(params);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Game.sendMessage(params);
     }
 
     private void sendReady() {
-        ClientSend c = new ClientSend();
         String[] params = {"r000"};
-        try {
-            c.execute(params);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private String receiveSettings() {
-        ClientReceive r = new ClientReceive();
-        String response = "";
-        try {
-            response = r.execute().get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return response;
+        Game.sendMessage(params);
     }
 
     public int[] JSONArrayToIntArray(JSONArray jsonArray) {
@@ -132,16 +111,5 @@ public class Wait extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private String receiveStart() {
-        ClientReceive r = new ClientReceive();
-        String response = "";
-        try {
-            response = r.execute().get();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return response;
     }
 }
