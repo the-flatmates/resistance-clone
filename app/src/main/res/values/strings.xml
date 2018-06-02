@@ -25,4 +25,6 @@
     <string name="initial_num_players">5</string>
     <string name="mission">Mission </string>
     <string name="team">Team:</string>
+    <string name="success">Success</string>
+    <string name="fail">Fail</string>
 </resources>
