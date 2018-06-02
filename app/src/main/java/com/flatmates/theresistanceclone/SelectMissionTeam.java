@@ -11,8 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 
 
@@ -112,7 +110,10 @@ public class SelectMissionTeam extends AppCompatActivity {
     }
 
     private void sendTeamSelection() {
-        String missionMessage = Game.createMessage("m", String.valueOf(Game.getMission()));
+        String missionMessage = "";
+        if (Game.isTargeting()) {
+            missionMessage = Game.createMessage("m", String.valueOf(Game.getMission()));
+        }
         StringBuilder teamSelectionMessage = new StringBuilder();
         for (String playerName : Game.getCurrentTeam()) {
             teamSelectionMessage.append(Game.createMessage("t", playerName));
